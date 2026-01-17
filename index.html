@@ -4,228 +4,306 @@
 <meta charset="UTF-8">
 <title>Happy Birthday Sreynith Ra! 🎂 🎈</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 :root { --primary: #facc15; --bg: #0f172a; }
-body { margin: 0; font-family: 'Poppins', sans-serif; background: var(--bg); color: #e5e7eb; text-align: center; overflow: hidden; height: 100vh; user-select: none; }
 
-/* --- Gift Screen --- */
-#giftScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle, #1e293b 0%, #0f172a 100%); z-index: 200; cursor: pointer; }
-.gift { font-size: 120px; animation: pulse 1.5s infinite ease-in-out; }
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); rotate(5deg); } }
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: #e5e7eb;
+  text-align: center;
+  overflow: hidden;
+  height: 100vh;
+  user-select: none;
+}
 
-/* --- Main Content --- */
-#content { display: none; height: 100vh; width: 100%; align-items: center; justify-content: center; position: relative; }
+/* Gift Screen */
+#giftScreen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
+  z-index: 200;
+  cursor: pointer;
+}
+.gift {
+  font-size: 120px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.1) rotate(5deg); }
+}
+
+/* Main Content */
+#content {
+  display: none;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
 
 .card-container {
-    position: relative;
-    padding: 25px;
-    background-image: url('test.jpg'); 
-    background-size: cover;
-    background-position: center;
-    border-radius: 45px;
-    box-shadow: 0 10px 60px rgba(0,0,0,0.8);
-    z-index: 10; 
+  padding: 25px;
+  background-image: url('test.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 45px;
+  box-shadow: 0 10px 60px rgba(0,0,0,0.8);
 }
 
 .card {
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 35px;
-    padding: 30px 20px;
-    max-width: 380px;
-    max-height: 90vh;
-    overflow-y: auto;
+  background: rgba(0,0,0,0.7);
+  border-radius: 35px;
+  padding: 30px 20px;
+  max-width: 380px;
 }
 
-h1 { font-family: 'Dancing Script', cursive; color: var(--primary); font-size: 2.5rem; margin: 5px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-h2 { font-weight: 300; margin: 0; font-size: 1.2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+h1 {
+  font-family: 'Dancing Script', cursive;
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin: 5px 0;
+}
+h2 {
+  font-weight: 300;
+  margin: 6px 0;
+  font-size: 1.1rem;
+}
 
-/* --- Big Cake --- */
-.cake-wrapper { position: relative; display: inline-block; cursor: pointer; margin: 15px 0; z-index: 20; }
-#cake { font-size: 100px; animation: bounce 2s infinite; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4)); }
-@keyframes bounce { 50% { transform: translateY(-10px); } }
-#flame { position: absolute; top: -35px; left: 50%; transform: translateX(-50%); font-size: 45px; animation: flicker 0.3s infinite alternate; filter: drop-shadow(0 0 10px orange); }
-@keyframes flicker { from { opacity: 0.8; transform: translateX(-50%) scale(1); } to { opacity: 1; transform: translateX(-50%) scale(1.15); } }
+/* Cake */
+.cake-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  margin: 15px 0;
+}
+#cake {
+  font-size: 100px;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  50% { transform: translateY(-10px); }
+}
+#flame {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 45px;
+  animation: flicker 0.3s infinite alternate;
+}
+@keyframes flicker {
+  from { opacity: 0.8; }
+  to { opacity: 1; transform: translateX(-50%) scale(1.15); }
+}
 .flame-off { display: none; }
 
-/* --- Balloon Game --- */
-.balloon { position: absolute; bottom: -120px; width: 60px; height: 85px; border-radius: 50%; cursor: crosshair; z-index: 100; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1); }
-.balloon::after { content: ""; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 2px; height: 25px; background: rgba(255,255,255,0.6); }
-@keyframes popExplosion { 0% { transform: scale(1); filter: brightness(1); } 40% { transform: scale(1.3) rotate(15deg); filter: brightness(2); opacity: 0.9; } 100% { transform: scale(0.5); opacity: 0; filter: brightness(3); } }
-.balloon-popped { animation: popExplosion 0.3s ease-out forwards; pointer-events: none; }
+/* Wish Text */
+.wishing-text {
+  display: none;
+  margin-top: 15px;
+  font-style: italic;
+  animation: fadeIn 1s forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
-/* Score Board */
-#scoreBoard { position: fixed; top: 20px; right: 20px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 10px 20px; border-radius: 25px; font-size: 1.1rem; color: var(--primary); font-weight: bold; z-index: 300; display: none; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 1px solid rgba(250, 204, 21, 0.3); }
+/* Balloons */
+.balloon {
+  position: absolute;
+  bottom: -120px;
+  width: 60px;
+  height: 85px;
+  border-radius: 50%;
+  cursor: crosshair;
+}
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  width: 2px;
+  height: 25px;
+  background: rgba(255,255,255,0.6);
+}
+.balloon-popped {
+  animation: popExplosion 0.3s forwards;
+}
+@keyframes popExplosion {
+  0% { transform: scale(1); }
+  100% { transform: scale(0); opacity: 0; }
+}
 
-/* --- Cloud Comments UI --- */
-#commentSection { display: none; margin-top: 15px; text-align: left; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
-#commentList { max-height: 120px; overflow-y: auto; margin-bottom: 10px; font-size: 0.85rem; padding-right: 5px; }
-.comment-item { margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 4px; }
-input, textarea { width: 92%; padding: 8px; margin-bottom: 8px; border-radius: 10px; border: none; background: rgba(255,255,255,0.1); color: white; font-family: inherit; }
-#postBtn { background: var(--primary); color: #000; border: none; padding: 10px; border-radius: 15px; font-weight: 600; cursor: pointer; width: 100%; transition: 0.3s; }
-#postBtn:hover { transform: scale(1.02); }
+/* Score */
+#scoreBoard {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 25px;
+  font-weight: bold;
+  color: var(--primary);
+  display: none;
+}
 
-.wishing-text { display: none; margin-top: 15px; font-style: italic; animation: fadeIn 1s forwards; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.controls { position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.6); padding: 8px 12px; border-radius: 30px; z-index: 300; display: flex; align-items: center; gap: 8px;}
-input[type=range] { accent-color: var(--primary); cursor: pointer; }
+/* Music Control */
+.controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.6);
+  padding: 8px 12px;
+  border-radius: 30px;
+}
+input[type=range] {
+  accent-color: var(--primary);
+}
 </style>
 </head>
 
 <body>
 
-<audio id="music" preload="auto" loop><source src="happy-birthday-357371.mp3" type="audio/mp3"></audio>
-<audio id="popSound" preload="auto"><source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mp3"></audio>
+<audio id="music" loop>
+  <source src="happy-birthday-357371.mp3" type="audio/mp3">
+</audio>
+
+<audio id="popSound">
+  <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mp3">
+</audio>
 
 <div class="controls">
-    <span style="font-size:14px">🎵</span>
-    <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+  🎵 <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
 </div>
 
 <div id="scoreBoard">Score: 0 🎈</div>
 
 <div id="giftScreen" onclick="openGift()">
-    <div class="gift">🎁</div>
-    <p>A gift for <b>Sreynith Ra</b></p>
-    <p style="font-size: 12px; opacity: 0.6; margin-top: 5px;">(Tap to Open)</p>
+  <div class="gift">🎁</div>
+  <p>A gift for <b>Sreynith Ra</b></p>
+  <small>(Tap to open)</small>
 </div>
 
 <div id="content">
   <div class="card-container">
-      <div class="card">
-        <div class="cake-wrapper" onclick="blowCandle()">
-          <div id="flame">🔥</div>
-          <div id="cake">🎂</div>
-        </div>
-        <h1>Happy Birthday</h1>
-        <h2>Sreynith Ra</h2>
-    <h2>Happy Birthday! May your special day be filled with gentle smiles, warm laughter, and beautiful moments that stay in your heart forever. I wish you happiness, good health, and endless reasons to smile in the year ahead.</h2>
+    <div class="card">
 
-        <div id="wishMessage" class="wishing-text">
-            <p style="font-size: 1rem;">"Wishing you the happiest of birthdays and an incredible year ahead!"</p>
-            <p style="color: var(--primary); font-family: 'Dancing Script'; font-size: 1.4rem; margin-top: 10px;">— Pop the balloons! 🎈</p>
-        </div>
-        <p class="note" id="instruction" style="margin-top: 15px; opacity: 0.8; font-size: 13px;">Blow into your mic or tap the cake! 🎤💨</p>
+      <div class="cake-wrapper" onclick="blowCandle()">
+        <div id="flame">🔥</div>
+        <div id="cake">🎂</div>
       </div>
+
+      <h1>Happy Birthday</h1>
+      <h2>Sreynith Ra</h2>
+
+      <h2>
+        Happy Birthday! May your day be filled with gentle smiles,
+        warm laughter, and beautiful moments that stay in your heart forever.
+      </h2>
+
+      <div id="wishMessage" class="wishing-text">
+        <p>"Wishing you happiness, good health, and endless joy."</p>
+        <p style="color:var(--primary)">— Pop the balloons 🎈</p>
+      </div>
+
+      <p id="instruction" style="opacity:0.7">
+        Blow into your mic or tap the cake 🎤
+      </p>
+
+    </div>
   </div>
 </div>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+<script>
+let blown = false;
+let score = 0;
 
+const music = document.getElementById("music");
+const popSound = document.getElementById("popSound");
+const scoreBoard = document.getElementById("scoreBoard");
 
-  let blown = false;
-  let score = 0; 
-  const audio = document.getElementById("music");
-  const popSound = document.getElementById("popSound");
-  const scoreBoard = document.getElementById("scoreBoard");
+function openGift() {
+  document.getElementById("giftScreen").style.display = "none";
+  document.getElementById("content").style.display = "flex";
+  music.play().catch(()=>{});
+  startMic();
+}
 
-  // Game/Audio priming
-  window.openGift = function() {
-    document.getElementById("giftScreen").style.display = "none";
-    document.getElementById("content").style.display = "flex";
-    audio.play().catch(e => console.log("Music blocked"));
-    popSound.play().then(() => { popSound.pause(); popSound.currentTime = 0; });
-    startMic();
+function blowCandle() {
+  if (blown) return;
+  blown = true;
+
+  music.pause();
+  document.getElementById("flame").classList.add("flame-off");
+  document.getElementById("instruction").style.display = "none";
+  document.getElementById("wishMessage").style.display = "block";
+  scoreBoard.style.display = "block";
+
+  setInterval(createBalloon, 700);
+}
+
+function createBalloon() {
+  const b = document.createElement("div");
+  b.className = "balloon";
+  const colors = ['#ff5e57','#0be881','#3c40c6','#ffd32a'];
+  b.style.background = colors[Math.floor(Math.random()*colors.length)];
+  b.style.left = Math.random()*85 + "vw";
+
+  b.onclick = () => {
+    popSound.cloneNode(true).play();
+    score++;
+    scoreBoard.textContent = `Score: ${score} 🎈`;
+    b.classList.add("balloon-popped");
+    setTimeout(()=>b.remove(),300);
   };
 
-  window.blowCandle = function() {
-    if (blown) return;
-    blown = true;
-    audio.pause(); 
-    document.getElementById("flame").classList.add("flame-off");
-    document.getElementById("instruction").style.display = "none";
-    document.getElementById("wishMessage").style.display = "block";
-    document.getElementById("commentSection").style.display = "block";
-    scoreBoard.style.display = "block";
-    setInterval(createBalloon, 700);
-  };
+  document.body.appendChild(b);
 
-  function createBalloon() {
-    const b = document.createElement("div");
-    b.className = "balloon";
-    const colors = ['#ff5e57', '#0be881', '#3c40c6', '#ffd32a', '#ff3f34', '#0fb9b1'];
-    b.style.background = `radial-gradient(circle at 30% 30%, ${colors[Math.floor(Math.random() * colors.length)]}, #000)`;
-    b.style.left = (Math.random() * 85 + 5) + "vw";
-    
-    b.onclick = function() {
-        popSound.cloneNode(true).play().catch(()=>{});
-        score++;
-        scoreBoard.innerHTML = "Score: " + score + " 🎈";
-        this.classList.add("balloon-popped");
-        setTimeout(() => this.remove(), 300);
-    };
-
-    document.body.appendChild(b);
-    let pos = -120;
-    const speed = Math.random() * 1.5 + 1.2;
-    const interval = setInterval(() => {
-        if (pos > window.innerHeight + 150) {
-            clearInterval(interval);
-            if (b.parentNode) b.remove();
-        } else {
-            pos += speed;
-            b.style.bottom = pos + "px";
-        }
-    }, 16);
-  }
-
-  // Firebase Real-time Listener
-  onValue(wishesRef, (snapshot) => {
-    const data = snapshot.val();
-    const list = document.getElementById("commentList");
-    list.innerHTML = "";
-    if (data) {
-      Object.values(data).forEach(msg => {
-        const item = document.createElement("div");
-        item.className = "comment-item";
-        item.innerHTML = `<b style="color:#facc15">${msg.name}:</b> ${msg.text}`;
-        list.appendChild(item);
-      });
-      list.scrollTop = list.scrollHeight;
+  let pos = -120;
+  const speed = Math.random()*1.5 + 1;
+  const fly = setInterval(()=>{
+    pos += speed;
+    b.style.bottom = pos + "px";
+    if (pos > innerHeight+150) {
+      clearInterval(fly);
+      b.remove();
     }
-  });
+  },16);
+}
 
-  // Post Wish function
-  document.getElementById("postBtn").onclick = function() {
-    const name = document.getElementById("userName").value;
-    const text = document.getElementById("userComment").value;
-    if (name && text) {
-      push(wishesRef, { name, text });
-      document.getElementById("userComment").value = "";
-    } else {
-      alert("Please fill in both fields!");
+function startMic() {
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const ctx = new AudioContext();
+    const mic = ctx.createMediaStreamSource(stream);
+    const analyser = ctx.createAnalyser();
+    mic.connect(analyser);
+    const data = new Uint8Array(analyser.frequencyBinCount);
+
+    function listen(){
+      analyser.getByteFrequencyData(data);
+      const vol = data.reduce((a,b)=>a+b)/data.length;
+      if (vol > 55 && !blown) blowCandle();
+      if (!blown) requestAnimationFrame(listen);
     }
-  };
+    listen();
+  }).catch(()=>{});
+}
 
-  function startMic() {
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-      const ctx = new AudioContext();
-      const mic = ctx.createMediaStreamSource(stream);
-      const analyser = ctx.createAnalyser();
-      mic.connect(analyser);
-      const data = new Uint8Array(analyser.frequencyBinCount);
-      function listen() {
-        analyser.getByteFrequencyData(data);
-        const volume = data.reduce((a,b)=>a+b)/data.length;
-        if (volume > 55 && !blown) blowCandle();
-        if (!blown) requestAnimationFrame(listen);
-      }
-      listen();
-    }).catch(()=>{});
-  }
-
-  document.getElementById("volumeSlider").addEventListener("input", (e) => {
-    audio.volume = e.target.value;
-  });
+document.getElementById("volumeSlider").oninput = e => {
+  music.volume = e.target.value;
+};
 </script>
+
 </body>
 </html>
-
-
-
-
-
