@@ -107,13 +107,6 @@ input[type=range] { accent-color: var(--primary); cursor: pointer; }
             <p style="color: var(--primary); font-family: 'Dancing Script'; font-size: 1.4rem; margin-top: 10px;">— Pop the balloons! 🎈</p>
         </div>
         <p class="note" id="instruction" style="margin-top: 15px; opacity: 0.8; font-size: 13px;">Blow into your mic or tap the cake! 🎤💨</p>
-
-        <div id="commentSection">
-            <div id="commentList"></div>
-            <input type="text" id="userName" placeholder="Your Name">
-            <textarea id="userComment" placeholder="Write a wish..."></textarea>
-            <button id="postBtn">Post Wish ✨</button>
-        </div>
       </div>
   </div>
 </div>
@@ -122,19 +115,6 @@ input[type=range] { accent-color: var(--primary); cursor: pointer; }
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-  // TODO: REPLACE WITH YOUR ACTUAL FIREBASE CONFIG KEYS
-const firebaseConfig = {
-  apiKey: "AIzaSyDi3ILsTKLX-jZay5lqZKfzkwc6WkTtRe0",
-  authDomain: "cost-project-415907.firebaseapp.com",
-  projectId: "cost-project-415907",
-  storageBucket: "cost-project-415907.firebasestorage.app",
-  messagingSenderId: "1015407325224",
-  appId: "1:1015407325224:web:11bac5f85cc50e95bc851d",
-  measurementId: "G-Y1G6VDRS9F"
-};
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-  const wishesRef = ref(db, 'wishes');
 
   let blown = false;
   let score = 0; 
@@ -243,6 +223,7 @@ const firebaseConfig = {
 </script>
 </body>
 </html>
+
 
 
 
